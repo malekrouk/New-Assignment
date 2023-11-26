@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "New_Assignment",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "New_Assignment::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-New_Assignment-Debug-9fb3907f2d553c8b5b4f.json",
+					"name" : "New_Assignment",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/malek/OneDrive/Desktop/AUC Fall 2023/Data Structure/Assignments/Assign/New-Assignment/cmake-build-debug",
+		"source" : "C:/Users/malek/OneDrive/Desktop/AUC Fall 2023/Data Structure/Assignments/Assign/New-Assignment"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
