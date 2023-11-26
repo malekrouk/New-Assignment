@@ -114,12 +114,12 @@ void updateValues(obj arr[],float mean)
 
 }
 //dates of each of the N most positive changes
-void mostPositive(obj arr[],int num, float mean)
+void mostPositive(obj arr[],int num)
 {
     buildMinHeap(arr,arraySize);
     for (int i = 0; i < num; i++)
     {
-        if (arr[i].value > mean)
+        if (arr[i].value > 0)
         {
             cout << "Date: " << arr[i].date << ", Value: " << arr[i].value  << endl;
 
@@ -131,12 +131,12 @@ void mostPositive(obj arr[],int num, float mean)
 
 }
 //dates of each of the N most negative changes
-void mostNegative(obj arr[],int num,float mean)
+void mostNegative(obj arr[],int num)
 {
     buildMaxHeap(arr,arraySize);
     for (int i = 0; i < num; i++)
     {
-        if (arr[i].value < mean)
+        if (arr[i].value < 0)
             cout << "Date: " << arr[i].date << ", Value: " << arr[i].value << endl;
         else
             break;
@@ -159,7 +159,8 @@ float maxSubSeq(obj arr[], int n)
     int i=1;
     int im=0;
     int jm=0;
-    float Sij=0,Smax=0;
+    float Sij=0;
+    float Smax=0;
     int newI;
     int newJ;
     for(int j=1;j<=n;j++)
@@ -175,7 +176,7 @@ float maxSubSeq(obj arr[], int n)
         else if (Sij<0)
         {i=j+1; Sij=0;}
     }
-    cout<<arr[i].date<<" "<<arr[jm].date;
+    cout<<"Start date is: "<<arr[i].date<<" End date is: "<<arr[jm].date<<endl;
     return Smax;
 
 }
@@ -184,20 +185,141 @@ int main()
 {
     obj arr[arraySize];
     getData(arr);
-    float f= mean(arr);
-    updateValues(arr,f);
-  // mostPositive(arr,50,1.18555);
-   //mostNegative(arr,10,f);
-   float m=0.0;
-    m=maxSubSeq(arr,arraySize);
-    cout<<endl;
-    cout<<"Sum is "<<m<<endl;
-    mostNegative(arr,10,f);
 
-   // buildMinHeap(arr,arraySize);
    /* for (int i = 0; i < arraySize; i++) {
         cout << "Date: " << arr[i].date << ", Value: " << arr[i].value << endl;
     } */
+int choice;
+    cout<<"Greetings!"<<endl;
+    cout<<"How could we serve you today?"<<endl;
+    cout<<"Service 1: Find the dates of the most positive changes  of the exchange rate from the mean M at a given day"<<endl;
+    cout<<"Service 2: Find the dates of the most negative changes  of the exchange rate from the mean M at a given day"<<endl;
+    cout<<"Service 3: Both service 1&2"<<endl;
+    cout<<"Service 4: Find the start date and the end date of the contiguous period over which the sum\n"
+          "of rate changes is maximum"<<endl;
+    cout<<"Service 5: Both service 3&4"<<endl;
+    cout<<"Please enter your choice below"<<endl;
+    cin>>choice;
+
+    if(choice==1)
+    {
+        int c;
+        int number;
+        cout<<"Would you like to use the average as the mean here or would you like to insert a number of your own"<<endl;
+        cout<<"1: average"<<endl;
+        cout<<"2: my own"<<endl;
+        cin>>c;
+        cout<<"Moreover, how many values would you like"<<endl;
+        if(c==1)
+        {
+            float f= mean(arr);
+            updateValues(arr,f);
+            mostPositive(arr,10);
+        }
+        else
+        {
+            float x;
+            cout<<"Please enter a mean of your own"<<endl;
+            cin>>x;
+            updateValues(arr,x);
+            mostPositive(arr,10);
+        }
+        cout<<"Done! Thank you!"<<endl;
+    }
+    else if(choice==2)
+    {
+        int c;
+        int number;
+        cout<<"Would you like to use the average as the mean here or would you like to insert a number of your own"<<endl;
+        cout<<"1: average"<<endl;
+        cout<<"2: my own"<<endl;
+        cin>>c;
+        cout<<"Moreover, how many values would you like"<<endl;
+        cin>>number;
+        if(c==1)
+        {
+            float e= mean(arr);
+            updateValues(arr,e);
+            mostNegative(arr,number);
+        }
+        else
+        {
+            float p=0.0;
+            cout<<"Please enter a mean of your own"<<endl;
+            cin>>p;
+            updateValues(arr,p);
+            mostNegative(arr,number);
+        }
+        cout<<"Done! Thank you!"<<endl;
+    }
+    else if(choice==3)
+    {
+        int c;
+        int number;
+        cout << "Would you like to use the average as the mean here or would you like to insert a number of your own"
+             << endl;
+        cout << "1: average" << endl;
+        cout << "2: my own" << endl;
+        cin >> c;
+        cout << "Moreover, how many values would you like" << endl;
+        cin >> number;
+        if (c == 1) {
+            float e = mean(arr);
+            updateValues(arr, e);
+            cout<<"Top positive "<<number<<" changes are "<<endl;
+            mostPositive(arr, number);
+            cout<<"Top negative "<<number<<" changes are "<<endl;
+            mostNegative(arr, number);
+        } else {
+            float x;
+            cout << "Please enter a mean of your own" << endl;
+            cin >> x;
+            cout<<"Top positive "<<number<<" changes are "<<endl;
+            updateValues(arr,x);
+            mostPositive(arr, number);
+            cout<<"Top negative "<<number<<" changes are "<<endl;
+            mostNegative(arr, number);
+        }
+        cout << "Done! Thank you!" << endl;
+    }
+
+    else if(choice==4)
+    {
+        int c;
+        cout << "Would you like to use the average as the mean here or would you like to insert a number of your own"
+             << endl;
+        cout << "1: average" << endl;
+        cout << "2: my own" << endl;
+        cin >> c;
+        if(c==1)
+        {
+            float e= mean(arr);
+            float g=0.0;
+            updateValues(arr,e);
+            g= maxSubSeq(arr,arraySize);
+            cout<<endl;
+            cout<<"The summation between those dates is "<<g<<endl;
+
+        }
+        else
+        {
+            float x=0.0;
+            float y=0.0;
+            cout<<"Please enter a mean of your own"<<endl;
+            cin>>x;
+            updateValues(arr,x);
+            y= maxSubSeq(arr,arraySize);
+            cout<<endl;
+            cout<<"The summation between those dates is "<<y<<endl;
+
+
+        }
+    }
+    else if(choice==5)
+    {
+
+    }
+
 
 
     return 0;
