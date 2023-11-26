@@ -3,7 +3,7 @@
 #include <sstream>
 using namespace std;
 
-const int arraySize = 7000;
+const int arraySize = 6668;
 
 struct obj {
     float value;
@@ -31,8 +31,8 @@ void heapifyMax(obj arr[], int n, int i) {
         heapifyMax(arr, n, max);
     }
 }
-
-void heapSortMax(obj arr[], int n) {
+ // ascending
+void buildMaxHeap(obj arr[], int n) {
     // build max-heap
     for (int i = n / 2 - 1; i >= 0; i--)
         heapifyMax(arr, n, i);
@@ -68,8 +68,8 @@ void heapifyMin(obj arr[], int n, int i) {
     }
 }
 
-// Main function to do the heap sort (min heap).
-void heapSortMin(obj arr[], int n) {
+// descending order
+void buildMinHeap(obj arr[], int n) {
     // build min-heap.
     for (int i = n / 2 - 1; i >= 0; i--)
         heapifyMin(arr, n, i);
@@ -95,7 +95,7 @@ void getData(obj arr[]) {
         int index = 0;
         while (getline(file, line))
             {
-                cout << "Read: " << line << endl;
+                //cout << "Read: " << line << endl;
                 istringstream stream(line);
                 stream >> arr[index].date >> arr[index].value;
                 index++;
@@ -105,22 +105,56 @@ void getData(obj arr[]) {
     file.close();
 }
 
-void mostNegative(obj array[],int num,int avg)
+void mostPositive(obj arr[],int num,float mean)
 {
+    buildMinHeap(arr,arraySize);
+    for (int i = 0; i < num; i++)
+    {
+        if (arr[i].value > mean)
+            cout << "Date: " << arr[i].date << ", Value: " << arr[i].value - mean << endl;
+        else
+            break;
+    }
+
+}
+void mostNegative(obj arr[],int num,float mean)
+{
+    buildMaxHeap(arr,arraySize);
+    for (int i = 0; i < num; i++)
+    {
+        if (arr[i].value < mean)
+            cout << "Date: " << arr[i].date << ", Value: " << arr[i].value - mean << endl;
+        else
+            break;
+    }
+
+}
+float mean(obj arr[])
+{
+
+    float avg=0.0;
+    for (int i = 0; i < arraySize; i++)
+        avg += arr[i].value;
+
+    avg=avg/arraySize;
+    return avg;
 
 }
 
-int main() {
+int main()
+{
 
     obj arr[arraySize];
     getData(arr);
-
-
-
+    float f= mean(arr);
+    cout<<f;
+   mostPositive(arr,50,1.18555);
+   mostNegative(arr,6668,f);
+   // buildMinHeap(arr,arraySize);
    /* for (int i = 0; i < arraySize; i++) {
         cout << "Date: " << arr[i].date << ", Value: " << arr[i].value << endl;
-    }
-*/
+    } */
+
     return 0;
 }
 
