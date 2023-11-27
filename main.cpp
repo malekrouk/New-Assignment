@@ -33,7 +33,7 @@ void heapifyMax(vector<obj>& v, int n, int i) {
     }
 }
 
-// ascending order using heapify
+
 void buildMaxHeap(vector<obj>& heap)
 {
     // build max-heap
@@ -67,7 +67,7 @@ void heapifyMin(vector<obj>& v, int n, int i)
     }
 }
 
-// descending order using heapify
+
 void buildMinHeap(vector<obj>& heap) {
     // build min-heap
     for (int i=(heap.size()-1) / 2 - 1; i >= 0; i--)
@@ -117,7 +117,7 @@ void mostPositive(vector<obj>& heap, int num)
         heapifyMax(heap,heap.size(),0); //adjust the heap after deletion
 
         if (heap[i].value > 0)
-            cout << "Date: " << d.date << ", Value: " << d.value << endl; 
+            cout << "Date: " << d.date << ", Value: " << d.value << endl;
         else
             break;
     }
@@ -330,8 +330,9 @@ int main() {
 
         cout<<endl<<endl;
         cout<<"Now to get the start date and the end date of the contiguous period over which the sum of rate changes is maximum"<<endl;
+        vector<obj> newHeap;
 
-        getData(heap); //initialize
+        getData(newHeap); //initialize
         int b;
         cout << "Would you like to use the average as the mean here or would you like to insert a number of your own"
              << endl;
@@ -340,10 +341,10 @@ int main() {
         cin >> b;
         if(c==1)
         {
-            float e= mean(heap);
+            float e= mean(newHeap);
             float g=0.0;
-            updateValues(heap,e);
-            g= maxSubSeq(heap);
+            updateValues(newHeap,e);
+            g= maxSubSeq(newHeap);
             cout<<endl;
             cout<<"The summation between those dates is "<<g<<endl;
 
